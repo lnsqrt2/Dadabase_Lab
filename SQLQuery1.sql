@@ -77,46 +77,46 @@
 
 	--5 批处理操作
 	
-	-- create table YOUNG_ACTOR(ACTID int PRIMARY key,
-	-- 				ANAME char(30) not NULL, 
-	-- 				SEX char(2) not NULL,
-	-- 				BYEAR int not NULL);
-	-- INSERT INTO YOUNG_ACTOR(ACTID,ANAME,SEX,BYEAR)
-	-- (
-	-- 		select ACTID,ANAME,SEX,BYEAR
-	-- 		from ACTOR
-	-- 		where BYEAR >= 1990
-	-- )
+	create table YOUNG_ACTOR(ACTID int PRIMARY key,
+					ANAME char(30) not NULL, 
+					SEX char(2) not NULL,
+					BYEAR int not NULL);
+	INSERT INTO YOUNG_ACTOR(ACTID,ANAME,SEX,BYEAR)
+	(
+			select ACTID,ANAME,SEX,BYEAR
+			from ACTOR
+			where BYEAR >= 1990
+	)
 
 	--6 观察性实验，插入重复元祖
-	-- insert into TEST1 values('WA');
-	-- insert into TEST1 values('WA');
-	-- UPDATE TEST1 SET FNAME = 'NOOOO' WHERE FNAME = 'WA';
-	--delete from TEST1 where FNAME='NOOOO';
+	insert into TEST1 values('WA');
+	insert into TEST1 values('WA');
+	UPDATE TEST1 SET FNAME = 'NOOOO' WHERE FNAME = 'WA';
+	delete from TEST1 where FNAME='NOOOO';
 
 	--7 创建视图
-	-- create VIEW young_leading(ACTID,ANAME,BYEAR,LEADING_NUMBER, MAX_GRADE)
-	-- 	as select ACTIN.ACTID, ANAME,BYEAR,COUNT(ACTIN.FID), MAX(FILM.GRADE)
-	-- 	from ACTIN, ACTOR, FILM
-	-- 	where ACTIN.ISLEADING = 'Y'
-	-- 		and ACTIN.ACTID=ACTOR.ACTID
-	-- 		and ACTIN.FID = FILM.FID
-	-- 		and ACTOR.BYEAR >= 1980
-	-- 	GROUP BY ACTIN.ACTID, ANAME,BYEAR;
+	create VIEW young_leading(ACTID,ANAME,BYEAR,LEADING_NUMBER, MAX_GRADE)
+		as select ACTIN.ACTID, ANAME,BYEAR,COUNT(ACTIN.FID), MAX(FILM.GRADE)
+		from ACTIN, ACTOR, FILM
+		where ACTIN.ISLEADING = 'Y'
+			and ACTIN.ACTID=ACTOR.ACTID
+			and ACTIN.FID = FILM.FID
+			and ACTOR.BYEAR >= 1980
+		GROUP BY ACTIN.ACTID, ANAME,BYEAR;
 
-	--8 触发器
-	-- CREATE TRIGGER zhouxingchi 
-	-- 	ON  FILM 
-	-- 	AFTER INSERT
-	-- AS 
-	-- BEGIN
-	-- 	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- 	-- interfering with SELECT statements.
-	-- 	UPDATE FILM SET FTYPE = '喜剧'
-	-- 	WHERE DNAME= '周星驰';
-	-- -- Insert statements for trigger here
-	-- END
-	--insert into FILM values('7', '长江7号', '剧', '周星驰', 87, 'N', 66)
+	8 触发器
+	CREATE TRIGGER zhouxingchi 
+		ON  FILM 
+		AFTER INSERT
+	AS 
+	BEGIN
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		UPDATE FILM SET FTYPE = '喜剧'
+		WHERE DNAME= '周星驰';
+	-- Insert statements for trigger here
+	END
+	insert into FILM values('7', '长江7号', '剧', '周星驰', 87, 'N', 66)
 
 	--查询1 ok
 	--“战狼”这部电影在洪山区各家影院的2017年的上映情况，
