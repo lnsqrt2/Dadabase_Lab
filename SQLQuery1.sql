@@ -2,32 +2,32 @@
 --CREATE DATABASE movie;
   Use movie;
   Go
---2.创建5个表
-  -- create table FILM(FID int PRIMARY key,
-	-- 				FNAME char(30) not NULL,
-	-- 				FTYPE char(10) not NULL,
-	-- 				DNAME char(30) not NULL,
-	-- 				length int not NULL,
-	-- 				IS3D char(1) not NULL,
-	-- 				GRADE int);
-  -- create table ACTOR(ACTID int PRIMARY key,
-	-- 				ANAME char(30) not NULL, 
-	-- 				SEX char(2) not NULL,
-	-- 				BYEAR int not NULL);
-  -- create table ACTIN(ACTID int not NULL,
-	-- 				FID int not NULL,
-	-- 				ISLEADING char(1),
-	-- 				GRADE int);
-  -- create table THEATER(TID int PRIMARY key,
-	-- 				TNAME char(20) not NULL,
-	-- 				TAREA char(20) not NULL, 
-	-- 				ADDRESS char(30) not NULL);
-  -- create table SHOW(FID int not NULL,
-	-- 				TID int not NULL,
-	-- 				PRICE int not NULL,
-	-- 				YEAR int not NULL,
-	-- 				MONTH int not NULL);
-	-- create table TEST1(FNAME char(30) not NULL);
+-- 2.创建5个表
+  create table FILM(FID int PRIMARY key,
+					FNAME char(30) not NULL,
+					FTYPE char(10) not NULL,
+					DNAME char(30) not NULL,
+					length int not NULL,
+					IS3D char(1) not NULL,
+					GRADE int);
+  create table ACTOR(ACTID int PRIMARY key,
+					ANAME char(30) not NULL, 
+					SEX char(2) not NULL,
+					BYEAR int not NULL);
+  create table ACTIN(ACTID int not NULL,
+					FID int not NULL,
+					ISLEADING char(1),
+					GRADE int);
+  create table THEATER(TID int PRIMARY key,
+					TNAME char(20) not NULL,
+					TAREA char(20) not NULL, 
+					ADDRESS char(30) not NULL);
+  create table SHOW(FID int not NULL,
+					TID int not NULL,
+					PRICE int not NULL,
+					YEAR int not NULL,
+					MONTH int not NULL);
+	create table TEST1(FNAME char(30) not NULL);
 	
 	--3.数据准备
   -- insert into FILM values('1', '功夫', '喜剧', '周星驰', 95, 'N', 87);
