@@ -86,7 +86,7 @@
 			select ACTID,ANAME,SEX,BYEAR
 			from ACTOR
 			where BYEAR >= 1990
-	)
+	);
 
 	--6 观察性实验，插入重复元祖
 	insert into TEST1 values('WA');
@@ -104,7 +104,7 @@
 			and ACTOR.BYEAR >= 1980
 		GROUP BY ACTIN.ACTID, ANAME,BYEAR;
 
-	8 触发器
+	--8 触发器
 	CREATE TRIGGER zhouxingchi 
 		ON  FILM 
 		AFTER INSERT
@@ -199,7 +199,7 @@
 
 	--查询9
 	--查询至少执导过2部电影的导演姓名以及跟这些导演合作过的演员编号、姓名
-	select DNAME,ACTIN.ACTID,ANAME
+	select distinct DNAME,ACTIN.ACTID,ANAME
 	from FILM,ACTIN,ACTOR
 	WHERE DNAME =ANY
 	(SELECT DNAME
@@ -211,7 +211,7 @@
 
 	--查询10
 	--查询每个演员担任主角的电影中的平均用户评分
-	select ANAME,AVG(FILM.GRADE)
+	select ANAME,AVG(FILM.GRADE) 平均分
 	from FILM,ACTIN,ACTOR
 	where FILM.FID = ACTIN.FID AND
 				ACTOR.ACTID = ACTIN.ACTID AND
@@ -289,7 +289,7 @@
 
 	--查询17
 	--查询所有没参演过用户评分85分以下电影的演员的编号、姓名
-	SELECT ACTIN.ACTID,ANAME
+	SELECT distinct  ACTIN.ACTID,ANAME
 	FROM ACTOR,ACTIN
 	WHERE FID != ALL(
 										SELECT FID
