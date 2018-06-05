@@ -17,19 +17,10 @@ Sqlite::Sqlite(QWidget *parent) :
         qDebug() << "Database Error!";
         return;
     }
-//    QSqlQuery query;//新建表
-//    query.exec("create table info (uid int,"
-//               "password varchar(40), "
-//               "Question varchar(40), "
-//               "Answer varchar(40), "
-//               "status int)");
-//    //执行预处理命令
-//    query.execBatch();
-
     //设置模型
     model = new QSqlTableModel(this);
     //指定使用哪个表
-    model->setTable("info");
+    model->setTable("users");
 
     //把model放在view里
     ui->tableView->setModel(model);
@@ -45,4 +36,46 @@ Sqlite::Sqlite(QWidget *parent) :
 Sqlite::~Sqlite()
 {
     delete ui;
+}
+
+bool Sqlite::login(QString username,QString password)//登录
+{
+    model->setTable("users");
+    model->select();
+    qDebug()<<username<<password;
+    int row = 0;
+    qDebug()<<model->rowCount();
+    while (row < model->rowCount())
+    {
+        QSqlRecord record = model->record(row);
+        if ((record.value("username") == username)&&(record.value("password") == password))
+        {
+            model->select();//把操作后的表显示出来，这句可能容易出错
+            return true;
+        }
+        else
+            row++;
+   }
+   return false;			//如果未查询到则返回false
+}
+
+QString Sqlite::limits(QString username)
+{
+    model->setTable("users");
+    model->select();
+    int row = 0;
+    while (row < model->rowCount())
+    {
+
+        QSqlRecord record = model->record(row);
+        if ((record.value("username") == username))
+        {
+            QString limit = (record.value("limits")).toString();
+            qDebug()<<limit;
+            return limit;
+        }
+        else
+            row++;
+   }
+   return NULL;			//如果未查询到则返回false
 }

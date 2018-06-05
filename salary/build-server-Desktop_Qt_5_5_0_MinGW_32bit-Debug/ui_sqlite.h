@@ -28,10 +28,10 @@ public:
     {
         if (Sqlite->objectName().isEmpty())
             Sqlite->setObjectName(QStringLiteral("Sqlite"));
-        Sqlite->resize(400, 300);
+        Sqlite->resize(843, 752);
         tableView = new QTableView(Sqlite);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(50, 40, 256, 192));
+        tableView->setGeometry(QRect(51, 93, 751, 501));
 
         retranslateUi(Sqlite);
 

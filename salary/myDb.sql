@@ -1,3 +1,9 @@
+create table users(
+                username char(30) not NULL,
+                password char(30) not NULL,
+                limits char(30) not NULL
+                );
+
 --工种
 create table profession(
                 job char(30) not NULL,
